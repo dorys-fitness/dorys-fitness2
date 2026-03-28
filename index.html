@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dorys Coaching | Coaching en ligne</title>
+  <meta name="description" content="Coaching en ligne structuré, humain et efficace. Perte de gras, prise de muscle, reprise du sport avec accompagnement personnalisé." />
+  <style>
+    :root{
+      --bg:#0f1118;
+      --panel:#181c27;
+      --panel-2:#202636;
+      --soft:#2a3145;
+      --text:#f3f5fb;
+      --muted:#b6bfd3;
+      --accent:#f3b221;
+      --accent-2:#ffd45d;
+      --line:rgba(255,255,255,.08);
+      --shadow:0 20px 60px rgba(0,0,0,.35);
+      --radius:24px;
+      --max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #18203a 0%, var(--bg) 38%);
+      color:var(--text);
+      line-height:1.55;
+    }
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    .container{max-width:var(--max);margin:0 auto;padding:0 22px}
+    nav{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter: blur(18px);
+      background:rgba(10,13,20,.72);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-wrap{max-width:var(--max);margin:0 auto;padding:16px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .logo{font-weight:800;letter-spacing:.2px;font-size:28px}
+    .logo span{color:var(--accent)}
+    .nav-links{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+    .nav-links a{color:var(--muted);font-weight:600;font-size:15px}
+    .nav-links a:hover{color:var(--text)}
+    .nav-btn{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#111;padding:12px 22px;border-radius:999px;font-weight:800;box-shadow:var(--shadow)}
+    .menu-toggle{display:none;background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--text);width:46px;height:46px;border-radius:14px;font-size:24px;line-height:1;cursor:pointer}
+
+    .hero{padding:72px 0 44px}
+    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;padding:9px 14px;border:1px solid rgba(243,178,33,.25);background:rgba(243,178,33,.08);border-radius:999px;color:#ffd97c;font-weight:700;font-size:13px;margin-bottom:18px}
+    h1{font-size:clamp(42px,7vw,84px);line-height:.95;margin:0 0 18px;letter-spacing:-2px}
+    h1 em{font-style:normal;color:var(--accent)}
+    .hero p{color:var(--muted);font-size:19px;max-width:680px;margin:0 0 26px}
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:22px}
+    .btn-primary,.btn-secondary,.btn-ghost{display:inline-flex;align-items:center;justify-content:center;padding:16px 24px;border-radius:16px;font-weight:800;transition:.2s transform,.2s opacity,.2s background}
+    .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#131313}
+    .btn-secondary{background:transparent;border:1px solid var(--line);color:var(--text)}
+    .btn-ghost{background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--text)}
+    .btn-primary:hover,.btn-secondary:hover,.btn-ghost:hover{transform:translateY(-1px);opacity:.96}
+    .proof-strip{display:flex;gap:12px;flex-wrap:wrap}
+    .proof-pill{padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--muted);font-size:14px;font-weight:700}
+
+    .hero-card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));border:1px solid var(--line);border-radius:32px;padding:26px;box-shadow:var(--shadow)}
+    .hero-stats{display:grid;gap:14px}
+    .stat{padding:18px 18px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+    .stat strong{display:block;font-size:32px;color:var(--accent);line-height:1;margin-bottom:6px}
+    .stat span{color:var(--muted);font-weight:600}
+
+    section{padding:42px 0}
+    .section-head{max-width:780px;margin:0 0 28px}
+    .tag{display:inline-block;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid var(--line);color:#ffd97c;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;margin-bottom:14px}
+    h2{font-size:clamp(34px,4vw,52px);line-height:1.02;margin:0 0 12px;letter-spacing:-1.2px}
+    .section-head p{margin:0;color:var(--muted);font-size:18px}
+
+    .cred-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .cred-card{padding:22px;border-radius:22px;background:var(--panel);border:1px solid var(--line);text-align:center}
+    .cred-card strong{display:block;font-size:22px;color:var(--accent);margin-bottom:8px}
+    .cred-card span{color:var(--muted);font-weight:700}
+
+    .forwho-grid,.steps-grid,.faq-grid,.footer-grid{display:grid;gap:18px}
+    .forwho-grid{grid-template-columns:repeat(2,1fr)}
+    .forwho-card,.step,.faq-item,.contact-card,.text-card{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:24px}
+    .forwho-card h3,.step h3,.faq-item h3,.contact-card h3,.text-card h3{margin:0 0 10px;font-size:22px}
+    .forwho-card p,.step p,.faq-item p,.contact-card p,.text-card p{margin:0;color:var(--muted)}
+    .steps-grid{grid-template-columns:repeat(4,1fr)}
+    .step-num{width:40px;height:40px;border-radius:12px;background:rgba(243,178,33,.12);border:1px solid rgba(243,178,33,.28);display:grid;place-items:center;color:var(--accent);font-weight:900;margin-bottom:14px}
+
+    .about-split{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:center}
+    .coach-photo{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:28px;padding:14px;box-shadow:var(--shadow)}
+    .coach-photo img{border-radius:20px;width:100%;height:auto;object-fit:cover}
+    .coach-bullets{display:grid;gap:14px;margin-top:18px}
+    .coach-bullet{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.03);border:1px solid var(--line)}
+    .coach-bullet strong{color:var(--text)}
+    .coach-bullet span{color:var(--muted);display:block}
+
+    .plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+    .plan{position:relative;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.03));border:1px solid var(--line);border-radius:28px;padding:28px;display:flex;flex-direction:column;box-shadow:var(--shadow)}
+    .plan.featured{border-color:rgba(243,178,33,.45);transform:translateY(-10px)}
+    .badge{position:absolute;top:18px;right:18px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#111;padding:9px 13px;border-radius:999px;font-size:12px;font-weight:900;box-shadow:0 10px 26px rgba(0,0,0,.22)}
+    .plan h3{margin:0 0 8px;font-size:34px;line-height:1}
+    .plan .subtitle{color:var(--muted);margin-bottom:20px;min-height:56px}
+    .price{display:flex;align-items:flex-end;gap:8px;margin-bottom:18px}
+    .price strong{font-size:56px;line-height:.95}
+    .price span{color:var(--muted);font-weight:800;margin-bottom:7px}
+    .plan ul{list-style:none;padding:0;margin:0 0 22px;display:grid;gap:11px}
+    .plan li{padding-left:24px;position:relative;color:#e3e8f6}
+    .plan li::before{content:"✓";position:absolute;left:0;top:0;color:var(--accent);font-weight:900}
+    .plan .small-note{margin-top:auto;color:var(--muted);font-size:14px;margin-bottom:18px}
+    .plan-actions{display:grid;gap:10px}
+
+    .testimonials-wrap{display:grid;gap:18px}
+    .quotes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .quote-card{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:24px}
+    .quote-card p{margin:0 0 12px;font-size:18px}
+    .quote-card span{color:var(--muted);font-size:14px;font-weight:700}
+    .mini-returns{display:flex;gap:14px;flex-wrap:wrap}
+    .mini-return{padding:12px 16px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--muted);font-weight:700}
+    .proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px}
+    .proof-card{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:22px;padding:14px;text-align:center}
+    .proof-card img{width:100%;max-width:300px;margin:0 auto;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .proof-card span{display:block;margin-top:10px;color:var(--muted);font-size:13px;font-weight:700}
+
+    .faq-grid{grid-template-columns:repeat(2,1fr)}
+    .contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
+    .contact-card .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+
+    footer{padding:30px 0 50px;color:var(--muted)}
+    .footer-grid{grid-template-columns:1fr auto;align-items:center;border-top:1px solid var(--line);padding-top:24px}
+
+    @media (max-width: 1080px){
+      .hero-grid,.about-split,.contact-grid,.plans-grid,.quotes-grid,.proof-grid,.cred-grid,.steps-grid,.forwho-grid,.faq-grid{grid-template-columns:1fr}
+      .plan.featured{transform:none}
+    }
+    @media (max-width: 760px){
+      .container{padding:0 16px}
+      nav{position:static}
+      .nav-wrap{padding:16px 16px 14px;flex-direction:column;align-items:flex-start;gap:10px}
+      .logo{font-size:22px}
+      .nav-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 14px;width:100%}
+      .nav-links a{font-size:13px;line-height:1.25}
+      .nav-btn{display:none}
+      h1{letter-spacing:-1px;font-size:34px;line-height:1.04;margin-bottom:14px}
+      h2{font-size:32px !important;line-height:1.06}
+      .hero{padding:22px 0 28px}
+      .eyebrow{font-size:12px;padding:8px 12px;margin-bottom:14px}
+      .hero p{font-size:16px;margin-bottom:20px}
+      .hero-actions{flex-direction:column;align-items:stretch;gap:10px;margin-bottom:16px}
+      .btn-primary,.btn-secondary,.btn-ghost{width:100%;padding:14px 18px;border-radius:14px}
+      .proof-strip{gap:10px}
+      .proof-pill{font-size:13px;padding:9px 12px}
+      .hero-card{padding:20px;border-radius:24px}
+      .stat{padding:16px}
+      .stat strong{font-size:28px}
+      .proof-grid,.faq-grid,.quotes-grid,.plans-grid,.forwho-grid,.steps-grid,.cred-grid,.contact-grid{grid-template-columns:1fr}
+      .proof-card{padding:16px 12px}
+      .proof-card img{max-width:150px;width:100%;height:auto;margin:0 auto;border-radius:14px;object-fit:contain}
+      .quote-card{padding:18px}
+      .mini-return{font-size:14px;padding:10px 12px}
+      .plan,.faq-item,.step,.cred-card,.about-card,.contact-card{padding:20px}
+      .plan{border-radius:24px}
+      .plan h3{font-size:24px;line-height:1.08;margin:0 0 8px}
+      .plan .subtitle{min-height:auto;margin-bottom:14px;font-size:15px}
+      .price{margin-bottom:14px;flex-wrap:wrap}
+      .price strong{font-size:48px}
+      .price span{font-size:14px;margin-bottom:4px}
+      .badge{position:static;display:inline-flex;align-self:flex-start;margin:0 0 10px;padding:7px 12px;font-size:11px;line-height:1}
+      .plan.featured{transform:none}
+      .plan li{padding-left:22px}
+      .contact-grid .contact-card:last-child{display:none}
+      footer{padding-bottom:36px}
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-wrap">
+      <div class="logo">Dorys <span>Coaching</span></div>
+      <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-nav">☰</button>
+      <div class="nav-links" id="mobile-nav">
+        <a href="#about">À propos</a>
+        <a href="#forwho">Pour qui</a>
+        <a href="#method">Méthode</a>
+        <a href="#plans">Formules</a>
+        <a href="#testimonials">Témoignages</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a href="#plans" class="nav-btn">Voir les formules</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">Coaching en ligne · structuré</div>
+        <h1>Transforme ton physique avec un coaching <em>clair, humain et efficace.</em></h1>
+        <p>Perte de gras, prise de muscle, reprise du sport, progression durable : je t’accompagne avec une méthode simple, personnalisée et adaptée à ton mode de vie.</p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#plans">Voir les formules</a>
+          <a class="btn-secondary" href="https://wa.me/41764048481?text=Bonjour%20Dorys%2C%20je%20souhaite%20en%20savoir%20plus%20sur%20le%20coaching%20en%20ligne" target="_blank" rel="noopener">Parler sur WhatsApp</a>
+        </div>
+        <div class="proof-strip">
+          <div class="proof-pill">Coaching en ligne personnalisé</div>
+          <div class="proof-pill">Approche humaine et structurée</div>
+          <div class="proof-pill">Nutrition + entraînement + suivi</div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-stats">
+          <div class="stat"><strong>10+</strong><span>années d’expérience dans le coaching</span></div>
+          <div class="stat"><strong>3</strong><span>niveaux d’accompagnement selon ton besoin</span></div>
+          <div class="stat"><strong>100%</strong><span>coaching adaptable à la salle ou à la maison</span></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="container cred-grid">
+      <div class="cred-card"><strong>Structuré</strong><span>Une méthode claire, pas du hasard</span></div>
+      <div class="cred-card"><strong>Personnalisé</strong><span>Adapté à ton niveau et tes contraintes</span></div>
+      <div class="cred-card"><strong>Humain</strong><span>Un vrai échange, pas un programme froid</span></div>
+      <div class="cred-card"><strong>Durable</strong><span>Des résultats réalistes et tenables</span></div>
+    </div>
+  </section>
+
+  <section id="forwho">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag">Pour qui</span>
+        <h2>Ce coaching est fait pour toi si…</h2>
+        <p>Tu veux arrêter de t’entraîner au hasard et avancer avec un vrai cadre, une méthode claire et un accompagnement adapté à ta réalité.</p>
+      </div>
+      <div class="forwho-grid">
+        <div class="forwho-card"><h3>Reprise du sport</h3><p>Tu veux te remettre sérieusement en route, sans te blesser et sans repartir de zéro tous les 10 jours.</p></div>
+        <div class="forwho-card"><h3>Perte de gras</h3><p>Tu cherches une approche réaliste, sans régime extrême, avec des actions simples que tu peux tenir dans la vraie vie.</p></div>
+        <div class="forwho-card"><h3>Prise de muscle</h3><p>Tu veux progresser avec une vraie structure d’entraînement, une nutrition cohérente et une progression suivie.</p></div>
+        <div class="forwho-card"><h3>Besoin de cadre</h3><p>Tu veux un plan clair, savoir quoi faire, pourquoi tu le fais, et arrêter d’improviser séance après séance.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="method">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag">Méthode</span>
+        <h2>Comment se passe l’accompagnement ?</h2>
+        <p>Un parcours simple, lisible et structuré pour t’aider à progresser sans te disperser.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step"><div class="step-num">1</div><h3>Premier échange</h3><p>On fait le point sur ton objectif, ton niveau, tes habitudes, tes contraintes et ce que tu veux vraiment obtenir.</p></div>
+        <div class="step"><div class="step-num">2</div><h3>Bilan personnalisé</h3><p>J’analyse ton profil pour construire une stratégie adaptée à ton entraînement, ton alimentation et ton rythme de vie.</p></div>
+        <div class="step"><div class="step-num">3</div><h3>Mise en place</h3><p>Tu reçois un programme clair, structuré et pensé pour t’aider à progresser sans te noyer dans les détails.</p></div>
+        <div class="step"><div class="step-num">4</div><h3>Suivi & ajustements</h3><p>Selon la formule choisie, je t’accompagne dans la durée avec un cadre précis, des ajustements et un vrai cap.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container about-split">
+      <div class="coach-photo">
+        <img src="D47C8D59-34B9-48C1-A0B0-5033AB858F2E.jpeg" alt="Portrait de Dorys, coach sportif" />
+      </div>
+      <div>
+        <div class="section-head" style="margin-bottom:18px">
+          <span class="tag">À propos</span>
+          <h2>Pourquoi travailler avec moi ?</h2>
+          <p>Tu ne choisis pas seulement un programme. Tu choisis une personne, une méthode, et une façon de travailler.</p>
+        </div>
+        <div class="text-card">
+          <h3>Un coaching sérieux, humain et sans faux-semblants.</h3>
+          <p>Je ne crois pas aux promesses irréalistes ni aux méthodes extrêmes. Mon objectif est simple : t’aider à progresser avec une stratégie claire, un accompagnement adapté, et une approche durable. Chaque personne a un rythme, un vécu, des contraintes et un point de départ différents. C’est pour ça que je propose un coaching structuré, personnalisé, et orienté résultats concrets.</p>
+        </div>
+        <div class="coach-bullets">
+          <div class="coach-bullet"><div>✔</div><div><strong>Des choix cohérents</strong><span>Pas de méthodes extrêmes, pas de promesses creuses.</span></div></div>
+          <div class="coach-bullet"><div>✔</div><div><strong>Une logique de progression claire</strong><span>Tu sais quoi faire, pourquoi tu le fais, et comment avancer.</span></div></div>
+          <div class="coach-bullet"><div>✔</div><div><strong>Une communication simple et directe</strong><span>Un accompagnement humain, exigeant et réaliste.</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="plans">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag">Formules</span>
+        <h2>Trois niveaux d’accompagnement</h2>
+        <p>Une hiérarchie claire : autonomie, transformation cadrée, ou accompagnement premium plus rapproché.</p>
+      </div>
+      <div class="plans-grid">
+        <article class="plan">
+          <h3>Programme Essentiel</h3>
+          <p class="subtitle">Le cadre idéal pour avancer en autonomie avec une méthode claire.</p>
+          <div class="price"><strong>190</strong><span>CHF / 8 semaines</span></div>
+          <ul>
+            <li>Questionnaire initial</li>
+            <li>Programme structuré 4 à 5 séances / semaine</li>
+            <li>Version salle ou maison</li>
+            <li>Exercices expliqués clairement</li>
+            <li>Guide alimentaire simplifié</li>
+            <li>Exemples de repas types</li>
+            <li>Conseils récupération et hygiène de vie</li>
+            <li>Programme remis en PDF</li>
+          </ul>
+          <div class="small-note">Sans suivi personnalisé continu. Échanges limités par email.</div>
+          <div class="plan-actions">
+            <a class="btn-primary" href="https://wa.me/41764048481?text=Bonjour%20Dorys%2C%20je%20veux%20en%20savoir%20plus%20sur%20le%20Programme%20Essentiel" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn-ghost" href="mailto:Dorys.k@gmail.com?subject=Programme%20Essentiel">Email</a>
+          </div>
+        </article>
+
+        <article class="plan featured">
+          <div class="badge">Le plus équilibré</div>
+          <h3>Coaching Structuré</h3>
+          <p class="subtitle">Un accompagnement cadré pour transformer ton physique sur une durée définie.</p>
+          <div class="price"><strong>390</strong><span>CHF / 8 semaines</span></div>
+          <p style="margin:-4px 0 16px;color:var(--muted);font-weight:800">ou 540 CHF / 12 semaines</p>
+          <ul>
+            <li>Bilan initial complet</li>
+            <li>Programme d’entraînement personnalisé</li>
+            <li>Plan alimentaire personnalisé</li>
+            <li>Ajustements réguliers</li>
+            <li>Suivi hebdomadaire</li>
+            <li>Correction technique possible</li>
+            <li>Conseils récupération, mobilité et prévention blessures</li>
+            <li>Support avec réponse sous 48h ouvrées</li>
+          </ul>
+          <div class="small-note">Pour les personnes qui veulent un vrai cadre et une transformation sérieuse.</div>
+          <div class="plan-actions">
+            <a class="btn-primary" href="https://wa.me/41764048481?text=Bonjour%20Dorys%2C%20je%20veux%20en%20savoir%20plus%20sur%20le%20Coaching%20Structur%C3%A9" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn-ghost" href="mailto:Dorys.k@gmail.com?subject=Coaching%20Structur%C3%A9">Email</a>
+          </div>
+        </article>
+
+        <article class="plan">
+          <div class="badge">Premium</div>
+          <h3>Coaching Premium</h3>
+          <p class="subtitle">L’accompagnement le plus complet pour un suivi rapproché et évolutif.</p>
+          <div class="price"><strong>350</strong><span>CHF / mois</span></div>
+          <ul>
+            <li>Tout ce qui est inclus dans le Coaching Structuré</li>
+            <li>Programme évolutif en continu</li>
+            <li>Plan alimentaire évolutif</li>
+            <li>Suivi WhatsApp prioritaire</li>
+            <li>Feedback vidéo et corrections techniques</li>
+            <li>Ajustements plus fréquents</li>
+            <li>Adaptation selon fatigue, stress et emploi du temps</li>
+            <li>Accompagnement discipline et régularité</li>
+          </ul>
+          <div class="small-note">Pour celles et ceux qui veulent être encadrés de près, avec plus de réactivité et de pilotage.</div>
+          <div class="plan-actions">
+            <a class="btn-primary" href="https://wa.me/41764048481?text=Bonjour%20Dorys%2C%20je%20veux%20en%20savoir%20plus%20sur%20le%20Coaching%20Premium" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn-ghost" href="mailto:Dorys.k@gmail.com?subject=Coaching%20Premium">Email</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials">
+    <div class="container testimonials-wrap">
+      <div class="section-head">
+        <span class="tag">Témoignages</span>
+        <h2>Des retours concrets, pas des promesses</h2>
+        <p>Chaque accompagnement est différent, mais les retours reviennent souvent sur les mêmes points : un meilleur cadre, des séances efficaces, et un coaching humain qui aide à rester régulier.</p>
+      </div>
+      <div class="quotes-grid">
+        <div class="quote-card"><p>“J’ai réussi à perdre 3 kg, je suis contente. L’alimentation est bien en place et je suis à fond dedans.”</p><span>Résultat concret · suivi nutrition</span></div>
+        <div class="quote-card"><p>“Merci beaucoup pour la séance d’hier, j’ai des courbatures dans tout le corps. J’ai vraiment senti le travail.”</p><span>Séances efficaces · ressenti terrain</span></div>
+        <div class="quote-card"><p>“En fait, tous tes cours sont top.”</p><span>Retour client · qualité globale du coaching</span></div>
+      </div>
+      <div class="mini-returns">
+        <div class="mini-return">“Je suis trop contente, c’était une super séance.”</div>
+        <div class="mini-return">“Merci coach, t’es le meilleur.”</div>
+        <div class="mini-return">“Finalement on te déteste, mais t’es quand même un bon coach 😉😜”</div>
+      </div>
+      <div class="proof-grid">
+        <div class="proof-card">
+          <img src="177A6519-12BE-4E8C-B825-92A6758971EA.jpeg" alt="Capture WhatsApp témoignage séance" />
+          <span>Retour après séance</span>
+        </div>
+        <div class="proof-card">
+          <img src="2CE11B92-2633-49F0-B810-33DB31D68326.jpeg" alt="Capture WhatsApp résultat client" />
+          <span>Suivi nutrition & progression</span>
+        </div>
+        <div class="proof-card">
+          <img src="1E2C79E7-DB47-4CCE-B41D-F4DF0A472012.jpeg" alt="Capture WhatsApp retour client" />
+          <span>Retour client authentique</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag">FAQ</span>
+        <h2>Questions fréquentes</h2>
+        <p>Les réponses aux principales questions qu’on peut se poser avant de commencer.</p>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-item"><h3>Quelle formule choisir ?</h3><p>Tout dépend de ton niveau d’autonomie, de ton besoin de suivi et de ton objectif. Si tu hésites, écris-moi et je t’oriente.</p></div>
+        <div class="faq-item"><h3>Est-ce adapté si je débute ?</h3><p>Oui. Les programmes sont adaptés à ton niveau, ton expérience et ta condition actuelle.</p></div>
+        <div class="faq-item"><h3>Est-ce possible depuis chez moi ?</h3><p>Oui. Selon la formule, le coaching peut être adapté à l’entraînement à domicile ou en salle.</p></div>
+        <div class="faq-item"><h3>La nutrition est-elle incluse ?</h3><p>Oui, selon la formule, tu bénéficies soit d’un guide simplifié, soit d’un plan alimentaire personnalisé et évolutif.</p></div>
+        <div class="faq-item"><h3>Comment se passe le suivi ?</h3><p>Le niveau de suivi dépend de la formule choisie : autonomie, suivi hebdomadaire, ou accompagnement premium plus rapproché.</p></div>
+        <div class="faq-item"><h3>En combien de temps puis-je voir des résultats ?</h3><p>Cela dépend de ton point de départ, de ta régularité et de ton objectif, mais les premiers changements apparaissent souvent bien avant la transformation finale.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container contact-grid">
+      <div class="contact-card">
+        <span class="tag">Contact</span>
+        <h3>Tu veux savoir quelle formule est faite pour toi ?</h3>
+        <p>Écris-moi directement et je t’aiderai à choisir l’accompagnement le plus adapté à ton objectif, ton niveau et ton mode de vie.</p>
+        <div class="actions">
+          <a class="btn-primary" href="https://wa.me/41764048481?text=Bonjour%20Dorys%2C%20je%20souhaite%20choisir%20la%20bonne%20formule" target="_blank" rel="noopener">M’écrire sur WhatsApp</a>
+          <a class="btn-secondary" href="mailto:Dorys.k@gmail.com?subject=Demande%20de%20renseignements%20coaching">Envoyer un email</a>
+        </div>
+      </div>
+      <div class="text-card">
+        <h3>Ce que tu peux attendre ici</h3>
+        <p>Un cadre clair. Une vraie logique de progression. Des choix cohérents. Et un accompagnement qui cherche des résultats concrets, pas des effets d’annonce.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>Dorys Coaching · Coaching en ligne personnalisé</div>
+      <div><a href="https://instagram.com/al_bundy_coaching" target="_blank" rel="noopener">Instagram</a> · <a href="mailto:Dorys.k@gmail.com">Email</a> · <a href="https://wa.me/41764048481" target="_blank" rel="noopener">WhatsApp</a></div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const toggle = document.querySelector('.menu-toggle');
+      const nav = document.getElementById('mobile-nav');
+      if (!toggle || !nav) return;
+
+      toggle.addEventListener('click', function () {
+        const isOpen = nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(isOpen));
+        toggle.textContent = isOpen ? '✕' : '☰';
+      });
+
+      nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function () {
+          if (window.innerWidth <= 760) {
+            nav.classList.remove('open');
+            toggle.setAttribute('aria-expanded', 'false');
+            toggle.textContent = '☰';
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
